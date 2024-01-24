@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 function App() {
   const [answer, setAnswer] = useState('');
+  const [chance, setchance] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('typing');
 
@@ -14,6 +15,7 @@ function App() {
 
   const handelInputChange = (e) => {
     setAnswer(e.target.value)
+    setError(null)
   }
   const handelSubmit = async(e) => {
     e.preventDefault();
@@ -25,6 +27,7 @@ function App() {
       setStatus('typing');
       setAnswer('')
       setError(err)
+      setchance([...chance,answer])
     }
 
   }
@@ -57,7 +60,16 @@ function App() {
           disabled = {answer.length === 0 || status === 'submitting'}
           >Submit</button>
           {error !== null && <p className="text-rose-600 text-center">{error.message}</p>}
+          <div className="text-rose-600 block mx-2">
+            <h2 className="text-xl inline-block">
+              history :  
+            </h2>{" "}
+            {chance.map(e => <span className="text-rose-700">{e}, </span>)}
+          </div>
         </form>
+          <button className="bg-rose-300 w-24 h-8 text-xl text-rose-950 rounded-xl text-center mx-2"
+          onClick={() => setchance([])}
+          >clear</button>
       </div>
     </div>
   )

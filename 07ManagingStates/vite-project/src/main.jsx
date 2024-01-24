@@ -6,7 +6,7 @@ import Accordian from './Components/Accordian.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Accordian/>
+    <App />
+    {/* <Accordian/> */}
   </React.StrictMode>,
 )
